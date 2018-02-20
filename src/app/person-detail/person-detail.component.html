@@ -1,0 +1,26 @@
+<div *ngIf='person'>
+<h2>Now selected: {{person.name}}  </h2>
+
+    <button type="button" class="btn btn-primary" (click)="openModal(template)">More information about person</button>
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Detailed information:</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Name: {{person.name}}</p>
+        <p>Username: {{person.username}}</p>
+        <p>e-mail: {{person.email}}</p>
+        <p>Address: {{person.address.zipcode}}, {{person.address.city}}, {{person.address.street}}, {{person.address.suite}}</p>
+        <p>Phone: {{person.phone}}</p>
+        <p>Website: {{person.website}}</p>
+        <p>Company: {{person.company.name}}, {{person.company.catchPhrase}}, {{person.company.bs}}</p>
+      </div>
+    </ng-template>
+
+
+
+</div>
