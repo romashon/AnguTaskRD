@@ -11,40 +11,31 @@ import { CookieService } from 'ngx-cookie-service';
 export class PersonsComponent implements OnInit {
   persons =[];                  // all persons from responce
   selectedPerson : Person;      // person who was selected
-  loadResult: boolean = false;  // flag. True when persons are not empty
+  ifCookieSet: boolean = false;  // flag. True when cookie is set
   constructor(  private personService: PersonService,
                 private cookieService: CookieService) { }
 
   ngOnInit() {
      this.getPersons();
-    // this.cookieCheck();   //don't work :(
   }
 
   // Get persons from service
   getPersons(): void {
-    this.personService.getPersons().subscribe(persons => this.persons = persons);
+    this.personService.getPersons().subscribe(persons => {this.persons = persons;
+    if (this.persons) this.cookieCheck(); });
   }
 
-  // If cookies aren't empty --> check person
+  // If cookies aren't empty --> define the selectedPerson from cookies
   cookieCheck() :void {
       if (this.cookieService.check('personid'))
       {
-          while (this.loadResult == false) {
-              this.personCheck();
-          }
+                  for (var i=0; i<this.persons.length;i++) {
+                      if (this.persons[i].id == this.cookieService.get('personid')) {
+                          this.selectedPerson = this.persons[i];
+                          this.ifCookieSet = true;
+                      }
+                  }
       }
-  }
-
-  // If persons are loaded --> define the selectedPerson from cookie
-  personCheck () : void {
-      if ( this.persons.length > 0) {
-          this.loadResult = true;
-          for (var i=0; i<this.persons.length;i++) {
-              if (this.persons[i].id == this.cookieService.get('personid')) {
-                  this.selectedPerson = this.persons[i];
-              }
-          }
-     }
   }
 
   // When selected --> define selectedPerson
