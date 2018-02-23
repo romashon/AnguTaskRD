@@ -3,9 +3,9 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
 
 ## Dependencies
-bootstrap            (https://www.npmjs.com/package/bootstrap)
-ngx-bootstrap        (https://www.npmjs.com/package/ngx-bootstrap)
-ngx-cookie-service   (https://www.npmjs.com/package/ngx-cookie-service)
+bootstrap (https://www.npmjs.com/package/bootstrap)
+<br>ngx-bootstrap (https://www.npmjs.com/package/ngx-bootstrap)
+<br>ngx-cookie-service (https://www.npmjs.com/package/ngx-cookie-service)
 
 ## Development server
 
