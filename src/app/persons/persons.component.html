@@ -1,26 +1,22 @@
-
 <table class="table table-hover">
-<thead class="thead-dark">
+  <thead class="thead-dark">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Username</th>
-        <th>e-mail</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>e-mail</th>
     </tr>
-</thead>
-<tbody>
-    <tr *ngFor='let person of persons'
-        [class.selected]="person === selectedPerson"
-        (click)="onSelect(person)">
+  </thead>
+  <tbody>
+    <tr *ngFor='let person of persons' [class.selected]="person === selectedPerson" (click)="onSelect(person)">
 
-        <td>{{person.id}}</td>
-        <td>{{person.name}}</td>
-        <td>{{person.username}}</td>
-        <td>{{person.email}}</td>
+      <td>{{person.id}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.username}}</td>
+      <td>{{person.email}}</td>
     </tr>
-</tbody>
+  </tbody>
 </table>
 
-<app-person-detail  [person] = "selectedPerson"
-                    [isModalShown] = "ifCookieSet">
+<app-person-detail [person]="selectedPerson" [isModalShown]="ifCookieSet">
 </app-person-detail>

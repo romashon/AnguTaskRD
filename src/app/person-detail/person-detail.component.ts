@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild  } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Person } from '../person';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -11,34 +11,30 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 
 export class PersonDetailComponent implements OnInit {
-    modalRef: BsModalRef;
- @Input() person: Person;
- @Input() isModalShown: boolean;
+  modalRef: BsModalRef;
+  @Input() person: Person;
+  @Input() isModalShown: boolean;
 
-
- @ViewChild('autoShownModal') autoShownModal: ModalDirective;
-
-
- showModal(): void {
-   this.isModalShown = true;
- }
-
- hideModal(): void {
-   this.autoShownModal.hide();
- }
-
- onHidden(): void {
-   this.isModalShown = false;
- }
-
-
+  @ViewChild('autoShownModal') autoShownModal: ModalDirective;
 
   constructor(private modalService: BsModalService) { }
 
-// open modal window with advanced information (used ngx-bootstrap)
-openModal(template: TemplateRef<any>): void {
+  // open modal window with advanced information (used ngx-bootstrap)
+  openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
-}
+  }
 
-ngOnInit(){}
+  showModal(): void {
+    this.isModalShown = true;
+  }
+
+  hideModal(): void {
+    this.autoShownModal.hide();
+  }
+
+  onHidden(): void {
+    this.isModalShown = false;
+  }
+
+  ngOnInit() { }
 }
