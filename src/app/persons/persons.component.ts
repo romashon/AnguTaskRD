@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
-import { CookieService } from 'ngx-cookie-service';
+import { LocalStorageService } from 'ngx-webstorage';
+
 
 @Component({
   selector: 'app-persons',
@@ -9,11 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./persons.component.css']
 })
 export class PersonsComponent implements OnInit {
-  persons = [];                  // all persons from responce
+  persons = [];                // all persons from responce
   selectedPerson: Person;      // person who was selected
-  isModalShown = false;  // flag. True when cookie is set
+  isModalShown = false;        // flag. True if modal is shown
   constructor(private personService: PersonService,
-    private cookieService: CookieService) { }
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.getPersons();
@@ -22,19 +23,20 @@ export class PersonsComponent implements OnInit {
   // Get persons from service
   getPersons(): void {
     this.personService.getPersons().subscribe(persons => {
-    this.persons = persons;
+      this.persons = persons;
       if (this.persons) {
-          this.cookieCheck(); }
+        this.cookieCheck();
+      }
     });
   }
 
   // If cookies aren't empty --> define the selectedPerson from cookies
   cookieCheck(): void {
-    if (this.cookieService.check('personid')) {
+    if (this.localStorageService.retrieve('personid') !== undefined) {
       for (let i = 0; i < this.persons.length; i++) {
-        if (this.persons[i].id === +this.cookieService.get('personid')) {
+        if (this.persons[i].id === this.localStorageService.retrieve('personid')) {
           this.selectedPerson = this.persons[i];
-          this.isModalShown = !!this.cookieService.get('isModalShown');
+          this.isModalShown = this.localStorageService.retrieve('isModalShown');
         }
       }
     }
@@ -43,6 +45,6 @@ export class PersonsComponent implements OnInit {
   // When selected --> define selectedPerson
   onSelect(person: Person): void {
     this.selectedPerson = person;
-    this.cookieService.set('personid', this.selectedPerson.id);
+    this.localStorageService.store('personid', this.selectedPerson.id);
   }
 }

@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Dependencies
 bootstrap (https://www.npmjs.com/package/bootstrap)
 <br>ngx-bootstrap (https://www.npmjs.com/package/ngx-bootstrap)
-<br>ngx-cookie-service (https://www.npmjs.com/package/ngx-cookie-service)
+<br>ngx-webstorage (https://www.npmjs.com/package/ngx-webstorage)
 
 ## Development server
 

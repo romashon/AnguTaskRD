@@ -9,7 +9,6 @@
   </thead>
   <tbody>
     <tr *ngFor='let person of persons' [class.selected]="person === selectedPerson" (click)="onSelect(person)">
-
       <td>{{person.id}}</td>
       <td>{{person.name}}</td>
       <td>{{person.username}}</td>
